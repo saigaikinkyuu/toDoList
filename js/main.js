@@ -15,14 +15,14 @@ const CALENDAR = () => {
 }
 
 const App = () => {
-    const [page, setPage] = React.useState("today");
+    const [page, setPage] = useState("today");
 
     const BOTTOM_MENUE = () => {
         return (
             <div>
-                <button onclick={() => {setPage("today")}}>TODAY</button>
-                <button onclick={() => {setPage("tomorrow")}}>TOMORROW</button>
-                <button onclick={() => {setPage("calendar")}}>CALENDAR</button>
+                <button onClick={() => {setPage("today")}}>TODAY</button>
+                <button onClick={() => {setPage("tomorrow")}}>TOMORROW</button>
+                <button onClick={() => {setPage("calendar")}}>CALENDAR</button>
             </div>
         )
     }
