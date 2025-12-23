@@ -17,12 +17,22 @@ const CALENDAR = () => {
 const App = () => {
     const [page, setPage] = React.useState("today");
 
+    const menueFuncToday = useCallback(() => {
+        setPage("today");
+    },[]);
+    const menueFuncTomorrow = useCallback(() => {
+        setPage("tomorrow");
+    },[]);
+    const menueFuncCalendar = useCallback(() => {
+        setPage("calendar");
+    },[]);
+
     const BOTTOM_MENUE = () => {
         return (
             <div>
-                <button onClick={() => {setPage("today")}}>TODAY</button>
-                <button onClick={() => {setPage("tomorrow")}}>TOMORROW</button>
-                <button onClick={() => {setPage("calendar")}}>CALENDAR</button>
+                <button onClick={menueFuncToday}>TODAY</button>
+                <button onClick={menueFuncTomorrow}>TOMORROW</button>
+                <button onClick={menueFuncCalendar}>CALENDAR</button>
             </div>
         )
     }
