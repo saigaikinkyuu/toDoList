@@ -15,7 +15,7 @@ const CALENDAR = () => {
 }
 
 const App = () => {
-    const [page, setPage] = useState("today");
+    const [page, setPage] = React.useState("today");
 
     const BOTTOM_MENUE = () => {
         return (
