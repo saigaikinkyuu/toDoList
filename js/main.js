@@ -28,7 +28,7 @@ function getDB(type) {
     console.log(todoList);
 
     if (todoList.isOk) {
-        if (todoList.length > 0) {
+        if (Object.keys(todoList).length > 0) {
             if (reqDate in todoList) {
                 const returnObj = todoList[reqDate];
                 returnObj['isOk'] = true;
