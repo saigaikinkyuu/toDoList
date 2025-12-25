@@ -75,9 +75,9 @@ const CALENDAR = () => {
 const BUTTOM_MENUE = React.memo(({ onToday, onTomorrow, onCalendar }) => {
     return (
         <div className="menueButtons">
-            <button className="menueButton" onClick={onToday}>TODAY</button>
-            <button className="menueButton" onClick={onTomorrow}>TOMORROW</button>
-            <button className="menueButton" onClick={onCalendar}>CALENDAR</button>
+            <button className="menueButton" onClick={onToday}>今日のToDo</button>
+            <button className="menueButton" onClick={onTomorrow}>明日のToDo</button>
+            <button className="menueButton" onClick={onCalendar}>カレンダー</button>
         </div>
     )
 })
