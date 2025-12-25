@@ -50,15 +50,15 @@ const TODOLIST = (props) => {
         <div className="container">
             <h1>{toJapanese}のToDo</h1>
             {!todos.isOk ? (
-                <p>あれ？メモがなくなっちゃった...</p>
+                <p data-type="noneToDo">あれ？メモがなくなっちゃった...</p>
             ) : Object.keys(todos).length > 1 ? (
                     <ul>
                         {Object.keys(todos).filter(key => key !== 'isOk').map((key) => (
-                            <li key={key}><span className="todoTitle">{todos[key]['ttl']}</span><br /><span className="todoMemo">{todos[key]['memo']}</span></li>
+                            <li key={key}><span className="todoTitle" data-completed={todos[key]['completed']}>{todos[key]['ttl']}</span><br /><span className="todoMemo">{todos[key]['memo']}</span></li>
                         ))}
                     </ul>
             ) : (
-                <p>今日はやるべきことがない！</p>
+                <p data-type="noneToDo">今日はやるべきことがない！</p>
             )}
         </div>
     )

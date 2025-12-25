@@ -37,6 +37,66 @@ p[data-type="noneToDo"] {
     margin: 20px 0px 20px 30px;
 }
 
+ul {
+    display: flex;
+    width: 100%;
+    padding: 0px 5%;
+    flex-wrap: wrap;
+}
+
+li {
+    list-style: none;
+    width: 23.75%;
+    margin: 15px 0px;
+    line-height: 2;
+    background-image: linear-gradient(#ccc 1px, transparent 1px);
+    background-size: 100% 2em;
+    background-position: 0 1.9em;
+}
+
+.todoTitle {
+    position: relative;
+    display: inline-block;
+}
+
+.todoTitle[data-completed="true"]::after {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #8e8e8e;
+    opacity: 0.8;
+    border-radius: 30% 50% 40% 60% / 40% 60% 50% 30%;
+    transform-origin: left center;
+    transform: scaleX(1) rotate(-1.5deg);
+    transition: transform 0.2s ease-out;
+}
+
+.todoTitle[data-completed="true"]:hover::after {
+    opacity: 1;
+}
+
+.todoTitle[data-completed="false"]::after {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #8e8e8e;
+    opacity: 0.8;
+    border-radius: 30% 50% 40% 60% / 40% 60% 50% 30%;
+    transform-origin: left center;
+    transform: scaleX(0) rotate(-1.5deg);
+    transition: transform 0.2s ease-out;
+}
+
+.todoTitle[data-completed="false"]:hover::after {
+    transform: scaleX(1) rotate(-1.5deg);
+}
+
 .menueButtons {
     max-height: 10%;
     overflow: hidden;
