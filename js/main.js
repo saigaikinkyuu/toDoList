@@ -46,9 +46,8 @@ function getDB(type) {
 const TODOLIST = (props) => {
     const toJapanese = props.name === "today" ? "今日" : "明日";
     const todos = getDB(props.name);
-    console.log(todos);
     return (
-        <div>
+        <div className="container">
             <h1>{toJapanese}のToDo</h1>
             {!todos.isOk ? (
                 <p>データベースの読み込みに失敗しました。</p>
@@ -67,7 +66,7 @@ const TODOLIST = (props) => {
 
 const CALENDAR = () => {
     return (
-        <div>
+        <div className="container">
             <h2>CALENDAR VIEW</h2>
         </div>
     )
@@ -75,10 +74,10 @@ const CALENDAR = () => {
 
 const BUTTOM_MENUE = React.memo(({ onToday, onTomorrow, onCalendar }) => {
     return (
-        <div>
-            <button onClick={onToday}>TODAY</button>
-            <button onClick={onTomorrow}>TOMORROW</button>
-            <button onClick={onCalendar}>CALENDAR</button>
+        <div className="menueButtons">
+            <button className="menueButton" onClick={onToday}>TODAY</button>
+            <button className="menueButton" onClick={onTomorrow}>TOMORROW</button>
+            <button className="menueButton" onClick={onCalendar}>CALENDAR</button>
         </div>
     )
 })
