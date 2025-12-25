@@ -14,7 +14,7 @@ const CALENDAR = () => {
     )
 }
 
-const BUTTOM_MENUE = React.memo((onToday, onTomorrow, onCalendar) => {
+const BUTTOM_MENUE = React.memo(({onToday, onTomorrow, onCalendar}) => {
     return (
         <div>
             <button onClick={onToday}>TODAY</button>
@@ -46,8 +46,7 @@ const App = () => {
             <BUTTOM_MENUE
             onToday={menueFuncToday}
             onTomorrow={menueFuncTomorrow}
-            onCalendar={menueFuncCalendar}>
-            </BUTTOM_MENUE>
+            onCalendar={menueFuncCalendar} />
         </div>
     )
 }
