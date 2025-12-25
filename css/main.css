@@ -26,6 +26,17 @@ body {
     overflow: hidden;
 }
 
+h1 {
+    border-bottom: 2px solid #989898;
+    width: fit-content;
+    padding: 0px 50px 0px 10px;
+}
+
+p[data-type="noneToDo"] {
+    font-size: 20px;
+    margin: 20px 0px 20px 30px;
+}
+
 .menueButtons {
     max-height: 10%;
     overflow: hidden;

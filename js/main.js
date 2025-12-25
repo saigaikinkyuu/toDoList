@@ -50,7 +50,7 @@ const TODOLIST = (props) => {
         <div className="container">
             <h1>{toJapanese}のToDo</h1>
             {!todos.isOk ? (
-                <p>データベースの読み込みに失敗しました。</p>
+                <p>あれ？メモがなくなっちゃった...</p>
             ) : Object.keys(todos).length > 1 ? (
                     <ul>
                         {Object.keys(todos).filter(key => key !== 'isOk').map((key) => (
@@ -58,7 +58,7 @@ const TODOLIST = (props) => {
                         ))}
                     </ul>
             ) : (
-                <p>ToDoはありません。</p>
+                <p>今日はやるべきことがない！</p>
             )}
         </div>
     )
