@@ -17,6 +17,8 @@ const CALENDAR = () => {
 const App = () => {
     const [page, setPage] = React.useState("today");
 
+    console.log("描画-Frame1");
+
     const menueFuncToday = useCallback(() => {
         setPage("today");
     },[]);
