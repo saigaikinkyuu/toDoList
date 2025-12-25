@@ -48,6 +48,8 @@ const TODOLIST = (props) => {
     const toJapanese = props.name === "today" ? "今日" : "明日";
     const [todos, setTodos] = React.useState(getDB(props.name));
 
+    console.log(todos);
+
     return (
         <div className="container">
             <h1>{toJapanese}のToDo</h1>
