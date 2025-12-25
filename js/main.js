@@ -60,7 +60,7 @@ const TODOLIST = (props) => {
                         ))}
                     </ul>
             ) : (
-                <p data-type="noneToDo">今日はやるべきことがない！</p>
+                <p data-type="noneToDo">今日はやらないといけないことがないよ！</p>
             )}
         </div>
     )
