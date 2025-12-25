@@ -55,7 +55,7 @@ const TODOLIST = (props) => {
             <h1>{toJapanese}のToDo</h1>
             {!todos.isOk ? (
                 <p data-type="noneToDo">あれ？メモがなくなっちゃった...</p>
-            ) : todos['content'].length > 1 ? (
+            ) : todos['content'].length > 0 ? (
                     <ul>
                         {todos['content'].map((item, num) => (
                             <li key={todos['date'] + '_' + num}><span className="todoTitle" data-completed={item['completed']}>{item['ttl']}</span><br /><span className="todoMemo">{item['memo']}</span></li>
