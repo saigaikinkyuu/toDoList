@@ -19,13 +19,13 @@ const App = () => {
 
     console.log("描画-Frame1");
 
-    const menueFuncToday = useCallback(() => {
+    const menueFuncToday = React.useCallback(() => {
         setPage("today");
     },[]);
-    const menueFuncTomorrow = useCallback(() => {
+    const menueFuncTomorrow = React.useCallback(() => {
         setPage("tomorrow");
     },[]);
-    const menueFuncCalendar = useCallback(() => {
+    const menueFuncCalendar = React.useCallback(() => {
         setPage("calendar");
     },[]);
 
