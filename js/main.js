@@ -44,21 +44,20 @@ function getDB(type) {
 const TODOLIST = (props) => {
     const toJapanese = props.name === "today" ? "今日" : "明日";
     const todos = getDB(props.name);
+    console.log(todos);
     return (
         <div>
             <h1>{toJapanese}のToDo</h1>
-            {todos.isOk ? () => {
-                Object.keys(todos).length > 1 ? (
+            {!todos.isOk ? (
+                <p>データベースの読み込みに失敗しました。</p>
+            ) : Object.keys(todos).length > 1 ? (
                     <ul>
                         {Object.keys(todos).filter(key => key !== 'isOk').map((key) => (
-                            <li key={key}><span class="todoTitle">{todos[key]['ttl']}</span><br /><span class="todoMemo">{todos[key]['memo']}</span></li>
+                            <li key={key}><span className="todoTitle">{todos[key]['ttl']}</span><br /><span className="todoMemo">{todos[key]['memo']}</span></li>
                         ))}
                     </ul>
-                ) : (
-                    <p>ToDoはありません。</p>
-                )
-            } : (
-                <p>データベースの読み込みに失敗しました。</p>
+            ) : (
+                <p>ToDoはありません。</p>
             )}
         </div>
     )
