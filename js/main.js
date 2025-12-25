@@ -14,46 +14,42 @@ const CALENDAR = () => {
     )
 }
 
+const BUTTOM_MENUE = React.memo((onToday, onTomorrow, onCalendar) => {
+    return (
+        <div>
+            <button onClick={onToday}>TODAY</button>
+            <button onClick={onTomorrow}>TOMORROW</button>
+            <button onClick={onCalendar}>CALENDAR</button>
+        </div>
+    )
+})
+
 const App = () => {
     const [page, setPage] = React.useState("today");
 
-    console.log("描画-Frame1");
-
     const menueFuncToday = React.useCallback(() => {
         setPage("today");
-    },[]);
+    }, []);
     const menueFuncTomorrow = React.useCallback(() => {
         setPage("tomorrow");
-    },[]);
+    }, []);
     const menueFuncCalendar = React.useCallback(() => {
         setPage("calendar");
-    },[]);
+    }, []);
 
-    const BOTTOM_MENUE = () => {
-        return (
-            <div>
-                <button onClick={menueFuncToday}>TODAY</button>
-                <button onClick={menueFuncTomorrow}>TOMORROW</button>
-                <button onClick={menueFuncCalendar}>CALENDAR</button>
-            </div>
-        )
-    }
-
-    if (page === "today" || page === "tomorrow") {
-        return (
-            <div>
-                <TODOLIST name={page}></TODOLIST>
-                <BOTTOM_MENUE></BOTTOM_MENUE>
-            </div>
-        )
-    } else if (page === "calendar") {
-        return (
-            <div>
-                <CALENDAR></CALENDAR>
-                <BOTTOM_MENUE></BOTTOM_MENUE>
-            </div>
-        )
-    }
+    return (
+        <div>{page === "calendar" ? (
+            <CALENDAR />
+        ) : (
+            <TODOLIST name={page} />
+        )}
+            <BUTTOM_MENUE
+            onToday={menueFuncToday}
+            onTomorrow={menueFuncTomorrow}
+            onCalendar={menueFuncCalendar}>
+            </BUTTOM_MENUE>
+        </div>
+    )
 }
 
 const container = document.getElementById('root')
