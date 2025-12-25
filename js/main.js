@@ -30,31 +30,33 @@ function getDB(type) {
     if (todoList.isOk) {
         if (Object.keys(todoList).length > 0) {
             if (reqDate in todoList) {
-                const returnObj = todoList[reqDate];
+                const returnObj = {content: todoList[reqDate]};
                 returnObj['isOk'] = true;
+                returnObj['date'] = reqDate;
                 return returnObj;
             } else {
-                return { isOk: true };
+                return { isOk: true, content: [], date: reqDate };
             }
         }
     } else {
         alert("Error loading database. Initializing new database.");
-        return { isOk: false };
+        return { isOk: false, content: [], date: null };
     }
 }
 
 const TODOLIST = (props) => {
     const toJapanese = props.name === "today" ? "今日" : "明日";
-    const todos = getDB(props.name);
+    const [todos, setTodos] = React.useState(getDB(props.name));
+
     return (
         <div className="container">
             <h1>{toJapanese}のToDo</h1>
             {!todos.isOk ? (
                 <p data-type="noneToDo">あれ？メモがなくなっちゃった...</p>
-            ) : Object.keys(todos).length > 1 ? (
+            ) : todos['content'].length > 1 ? (
                     <ul>
-                        {Object.keys(todos).filter(key => key !== 'isOk').map((key) => (
-                            <li key={key}><span className="todoTitle" data-completed={todos[key]['completed']}>{todos[key]['ttl']}</span><br /><span className="todoMemo">{todos[key]['memo']}</span></li>
+                        {todos['content'].map((item, num) => (
+                            <li key={todos['date'] + '_' + num}><span className="todoTitle" data-completed={item['completed']}>{item['ttl']}</span><br /><span className="todoMemo">{item['memo']}</span></li>
                         ))}
                     </ul>
             ) : (
