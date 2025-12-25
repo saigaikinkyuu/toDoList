@@ -1,7 +1,65 @@
+function dateFormat(date) {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}/${month}/${day}`;
+}
+
+function getDB(type) {
+    const reqDate = type === 'today' ? dateFormat(new Date()) : dateFormat(new Date(Date.now() + 24 * 60 * 60 * 1000));
+
+    const todoList = (() => {
+        try {
+            const data = localStorage.getItem("todoDB");
+            if (data) {
+                const pursedData = JSON.parse(data);
+                pursedData['isOk'] = true;
+                return pursedData;
+            } else {
+                localStorage.setItem("todoDB", JSON.stringify({}));
+                return { isOk: true };
+            }
+        } catch (e) {
+            console.error(e);
+            return { isOk: false };
+        }
+    })();
+
+    if (todoList.isOk) {
+        if (todoList.length > 0) {
+            if (reqDate in todoList) {
+                const returnObj = todoList[reqDate];
+                returnObj['isOk'] = true;
+                return returnObj;
+            } else {
+                return { isOk: true };
+            }
+        }
+    } else {
+        alert("Error loading database. Initializing new database.");
+        return { isOk: false };
+    }
+}
+
 const TODOLIST = (props) => {
+    const toJapanese = props.name === "today" ? "今日" : "明日";
+    const todos = getDB(props.name);
     return (
         <div>
-            <h1>TO DO LIST FOR {props.name}</h1>
+            <h1>{toJapanese}のToDo</h1>
+            {todos.isOk ? () => {
+                Object.keys(todos).length > 1 ? (
+                    <ul>
+                        {Object.keys(todos).filter(key => key !== 'isOk').map((key) => (
+                            <li key={key}><span class="todoTitle">{todos[key]['ttl']}</span><br /><span class="todoMemo">{todos[key]['memo']}</span></li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>ToDoはありません。</p>
+                )
+            } : (
+                <p>データベースの読み込みに失敗しました。</p>
+            )}
         </div>
     )
 }
@@ -14,7 +72,7 @@ const CALENDAR = () => {
     )
 }
 
-const BUTTOM_MENUE = React.memo(({onToday, onTomorrow, onCalendar}) => {
+const BUTTOM_MENUE = React.memo(({ onToday, onTomorrow, onCalendar }) => {
     return (
         <div>
             <button onClick={onToday}>TODAY</button>
@@ -44,9 +102,9 @@ const App = () => {
             <TODOLIST name={page} />
         )}
             <BUTTOM_MENUE
-            onToday={menueFuncToday}
-            onTomorrow={menueFuncTomorrow}
-            onCalendar={menueFuncCalendar} />
+                onToday={menueFuncToday}
+                onTomorrow={menueFuncTomorrow}
+                onCalendar={menueFuncCalendar} />
         </div>
     )
 }
